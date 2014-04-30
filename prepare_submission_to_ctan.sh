@@ -1,4 +1,4 @@
-PKGNAME="sc-prettifier"
+PKGNAME="sclang-prettifier"
 if [ -f ${PKGNAME}.tar.gz ]; then
     rm ${PKGNAME}.tar.gz
 fi

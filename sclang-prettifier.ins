@@ -35,8 +35,8 @@ This work has the LPPL maintenance status `maintained'.
  
 The Current Maintainer of this work is Julien Cretel.
 
-This work currently consists of the files sc-prettifier.dtx,
-sc-prettifier.ins, and the derived file sc-prettifier.sty.
+This work currently consists of the files sclang-prettifier.dtx,
+sclang-prettifier.ins, and the derived file sclang-prettifier.sty.
 
 \endpreamble
 
@@ -44,10 +44,13 @@ sc-prettifier.ins, and the derived file sc-prettifier.sty.
 \keepsilent
 \askforoverwritefalse
 
-\usedir{tex/latex/sc-prettifier}
+\usedir{tex/latex/sclang-prettifier}
 
 % the package
-\generate{\file{sc-prettifier.sty}{\from{sc-prettifier.dtx}{package}}}
+\generate
+{%
+    \file{sclang-prettifier.sty}{\from{sclang-prettifier.dtx}{package}}%
+}
 
 % message
 \obeyspaces
@@ -56,10 +59,10 @@ sc-prettifier.ins, and the derived file sc-prettifier.sty.
 \Msg{* To finish the installation you have to move the  *}
 \Msg{* following file into a directory searched by TeX: *}
 \Msg{*                                                  *}
-\Msg{*     sc-prettifier.sty                            *}
+\Msg{*     sclang-prettifier.sty                        *}
 \Msg{*                                                  *} 
 \Msg{* To produce the documentation run the file        *}
-\Msg{* sc-prettifier.dtx through LaTeX.                 *}
+\Msg{* sclang-prettifier.dtx through LaTeX.             *}
 \Msg{*                                                  *}
 \Msg{****************************************************}
 
