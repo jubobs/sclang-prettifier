@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2011/06/27]
 %<package>\ProvidesPackage{sclang-prettifier}
-%<package>  [2014/04/28 v0.2a A package for prettyprinting SuperCollider
+%<package>  [2014/05/04 v0.1 A package for prettyprinting SuperCollider
 %<package>   source code]
 %
 %<*driver>
@@ -37,8 +37,9 @@
 
 \lstset
 {
-  style   = SuperCollider-IDE,
-  upquote = true,
+  style      = SuperCollider-IDE,
+  basicstyle = \scttfamily\small,
+  upquote    = true,
 }
 
 \lstdefinestyle{nonbnoframe}
@@ -54,7 +55,9 @@
 \newcommand\lstpkg{\textsf{listings}}
 \newcommand\sclng{\texttt{SuperCollider}}
 \newcommand*{\scsty}[1]{\texttt{#1}}
-\newcommand*{\sccode}[1]{\lstinline[style=SuperCollider-IDE]|#1|}
+\newcommand*{\sccode}[1]{%
+  \lstinline[style=SuperCollider-IDE,basicstyle=\scttfamily]|#1|
+}
 \makeindex
 
 \begin{document}
@@ -175,7 +178,6 @@
   float,
   label=SCsample,
   caption={Some dummy \SC{} code},
-  basicstyle=\scttfamily\small,
 ]
 p.clear;
 
@@ -392,28 +394,14 @@ p.clear;
 %
 % \subsection{Changing the font of your \texorpdfstring{\SC}{SuperCollider}
 %   listings}
+% 
+% The \scpkg{} package uses the Computer Modern typewriter font by default,
+% which, arguably, is far from ideal.
+% I encourage you to switch to your preferred ``programmer font'' instead.
 %
-% The \scpkg{} package uses the Courier font by default, which is the font
-% that the \SC{} IDE uses by default.
-% Loading the \pkg{fontenc}~package with option~\opt{T1} is strongly
-% recommended, so that Courier be correctly typeset. If you don't, tilde
-% characters may be typeset too high, for instance.
-%^^A
-% \begin{verbatim}
-%   \usepackage[T1]{fontenc}\end{verbatim}%
-%^^A
-% The \scpkg{} package does not automatically do this, because I do not want
-% to force the use of that package and option upon you.
-%
-% If you're not happy with \scpkg{}'s default font, you're welcome to select a
-% different font for your listings, using \lstpkg{}' \keyname{basicstyle}
-% key; see subsection~4.6 of the
-% \href{http://www.ctan.org/pkg/listings}{\lstpkg{} documentation}
-% for more details.
-%
-% In case you change the font and later want to revert to \scpkg{}'s default
-% font, you can select the latter by passing \rcmdname\scttfamily{} to 
-% \lstpkg{}' \keyname{basicstyle} key.
+% For |pdflatex| users,
+% \scpkg{} conveniently provides a macro for easily selecting the Courier
+% font---which is used by default by the \SC{} IDE.
 %^^A
 % \begin{syntax}
 %
@@ -422,7 +410,15 @@ p.clear;
 %     selects the Courier font.
 %
 % \end{syntax}
-%
+%^^A
+% To use Courier in your \SC{} listings, you must pass |\sctttfamily| to
+% \lstpkg{}' \keyname{basicstyle} key (\emph{after} loading the
+% \scsty{SuperCollider-IDE} style) and also---this is important---^^A
+% load the \pkg{fontenc} package with option \opt{T1}:
+%^^A
+% \begin{verbatim}
+%   \usepackage[T1]{fontenc}\end{verbatim}
+% 
 %
 % \part{Miscellaneous}
 % 
@@ -831,7 +827,7 @@ p.clear;
 \toks@=%
 {
   language               = \languageNormedDefd@scpr,
-  basicstyle             = \color{black}\scttfamily\normalsize,
+  basicstyle             = \color{black}\ttfamily\normalsize,
   breaklines             = true,
   showspaces             = false,
   showstringspaces       = false,
