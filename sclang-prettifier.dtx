@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2011/06/27]
 %<package>\ProvidesPackage{sclang-prettifier}
-%<package>  [2014/05/04 v0.1 A package for prettyprinting SuperCollider
+%<package>  [2014/06/14 v0.1 A package for prettyprinting SuperCollider
 %<package>   source code]
 %
 %<*driver>
@@ -53,8 +53,8 @@
 \newcommand\SC{SuperCollider}
 \newcommand\scpkg{\textsf{sclang-prettifier}}
 \newcommand\lstpkg{\textsf{listings}}
+\newcommand\scsty{\texttt{SuperCollider-IDE}}
 \newcommand\sclng{\texttt{SuperCollider}}
-\newcommand*{\scsty}[1]{\texttt{#1}}
 \newcommand*{\sccode}[1]{%
   \lstinline[style=SuperCollider-IDE,basicstyle=\scttfamily]|#1|
 }
@@ -66,7 +66,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{197}
+% \CheckSum{199}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -114,14 +114,14 @@
 % \DoNotIndex{\let,\loop,\lst@AddToHook,\lst@Key,\lst@language,\lst@mode,^^A
 %   \lst@NormedDef,\lst@Pmode,\lst@SaveOutputDef,\lst@thestyle,\lst@token,^^A
 %   \lstdefinelanguage,\lstdefinestyle,\lsthk@DetectKeywords,\lstum@backslash}
-% \DoNotIndex{\newcommand,\newcount,\newif,\noexpand,\normalsize,^^A
+% \DoNotIndex{\newcommand,\newcount,\newif,\newtoks,\noexpand,\normalsize,^^A
 %   \numbered@scpr@true}
 % \DoNotIndex{\OptionNotUsed}
 % \DoNotIndex{\PackageError,\PackageWarning,\PassOptionsToPackage,^^A
 %   \ProcessOptions}
 % \DoNotIndex{\relax,\renewcommand,\repeat,\RequirePackage}
 % \DoNotIndex{\selectfont}
-% \DoNotIndex{\the,\toks@}
+% \DoNotIndex{\the,\ttfamily}
 % \DoNotIndex{\unless}
 %
 % \title^^A
@@ -429,6 +429,7 @@ p.clear;
 % difficult;
 % I might implement a solution in the future, if I ever find a good one.
 %
+%
 % \section{Bug reports and feature suggestions}
 %
 % The development version of \scpkg{} is currently hosted on Bitbucket at
@@ -460,8 +461,9 @@ p.clear;
 % encouragements, and suggestions.
 % Thanks in particular to
 % James Harkins, whose questions inspired me to write this package,
-% and to Marco Daniel an Enrico Gregorio (egreg), whose contributions to
-% TeX.SX proved particularly helpful for the development of this package.
+% and to Marco Daniel, Enrico Gregorio (egreg), and Heiko Oberdiek,
+% whose contributions to TeX.SX proved particularly helpful for the
+% development of this package.
 %
 %
 % \part{Implementation}
@@ -819,12 +821,16 @@ p.clear;
 % \end{macro}
 %
 %
-% \section{\texorpdfstring{\scpkg{}}{sclang-prettifier} default style}
+% \section{\texorpdfstring{\scsty{}}{SuperCollider-IDE} style}
 % 
-% This style mimics the default style of the \SC{} IDE.
+% The \scsty{} style mimics the default style of the \SC{} IDE.
 %
+% \begin{macro}{\toks@scpr}
+% We allocate a token list register in which we store settings that we'll use
+% to define the style.
 %    \begin{macrocode}
-\toks@=%
+\newtoks\toks@scpr
+\toks@scpr=%
 {
   language               = \languageNormedDefd@scpr,
   basicstyle             = \color{black}\ttfamily\normalsize,
@@ -841,14 +847,17 @@ p.clear;
   scenvvarstyle          = \color[RGB]{147,070,014}         ,
   scclassstyle           = \color[RGB]{000,040,211}         ,
 }
+%    \end{macrocode}
+% \end{macro}
+%    \begin{macrocode}
 \ifframed@scpr@
-  \toks@=\expandafter{\the\toks@ frame=single,}
+  \toks@scpr\expandafter{\the\toks@scpr frame=single,}
 \fi
 \ifnumbered@scpr@
-  \toks@=\expandafter{\the\toks@ numbers=left,}
+  \toks@scpr=\expandafter{\the\toks@scpr numbers=left,}
 \fi
 \begingroup\edef\@tempa{\endgroup
-  \noexpand\lstdefinestyle{SuperCollider-IDE}{\the\toks@}
+  \noexpand\lstdefinestyle{SuperCollider-IDE}{\the\toks@scpr}
 }\@tempa
 %    \end{macrocode}
 %

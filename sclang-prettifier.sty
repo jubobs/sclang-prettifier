@@ -29,7 +29,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2011/06/27]
 \ProvidesPackage{sclang-prettifier}
-  [2014/05/04 v0.1 A package for prettyprinting SuperCollider
+  [2014/06/14 v0.1 A package for prettyprinting SuperCollider
    source code]
 \newcommand\lstoptcheck@scpr[1]
 {%
@@ -132,7 +132,8 @@
 \lst@Key{scclassstyle}\relax%
   {\def\classStyle@scpr{#1}}
 \newcommand\scttfamily{\fontfamily{pcr}\selectfont}
-\toks@=%
+\newtoks\toks@scpr
+\toks@scpr=%
 {
   language               = \languageNormedDefd@scpr,
   basicstyle             = \color{black}\ttfamily\normalsize,
@@ -150,13 +151,13 @@
   scclassstyle           = \color[RGB]{000,040,211}         ,
 }
 \ifframed@scpr@
-  \toks@=\expandafter{\the\toks@ frame=single,}
+  \toks@scpr\expandafter{\the\toks@scpr frame=single,}
 \fi
 \ifnumbered@scpr@
-  \toks@=\expandafter{\the\toks@ numbers=left,}
+  \toks@scpr=\expandafter{\the\toks@scpr numbers=left,}
 \fi
 \begingroup\edef\@tempa{\endgroup
-  \noexpand\lstdefinestyle{SuperCollider-IDE}{\the\toks@}
+  \noexpand\lstdefinestyle{SuperCollider-IDE}{\the\toks@scpr}
 }\@tempa
 \endinput
 %%
