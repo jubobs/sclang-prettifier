@@ -167,7 +167,7 @@
 % \section{\scpkg{} in action}
 %
 % The \scpkg{} package defines a \lstpkg{} style, called
-% \scsty{SuperCollider-IDE}, that mimics the style of the \SC{} IDE.
+% \scsty{}, that mimics the style of the \SC{} IDE.
 % For an example, see \cref{SCsample}, which is adapted from this
 % \href{http://tex.stackexchange.com/q/159245/21891}{TeX.SX question}.
 %^^A
@@ -201,7 +201,7 @@ p.clear;
 % \fi
 % 
 % The \scpkg{} package automatically
-% highlights the following syntactic elements of the \sclng{} language.
+% highlights the following syntactic elements of the \SC{} language.
 %
 % \paragraph{Keywords}
 % \sccode{var}
@@ -286,19 +286,19 @@ p.clear;
 % \item[\opt{framed}]\leavevmode
 %
 %       Draws (by default) a dark gray frame around each listing that uses
-%       the \scsty{SuperCollider-IDE} style.
+%       the \scsty{} style.
 %
 % \item[\opt{numbered}]\leavevmode
 %
 %       Prints (by default) line numbers in light gray to the left of each
-%       listing that uses the \scsty{SuperCollider-IDE} style.
+%       listing that uses the \scsty{} style.
 %
 % \end{description}
 %
 % \subsection{Displayed listings}
 %
 % To typeset a \SC{} listing embedded in your |tex| file, simply enclose
-% it in an |lstlisting| environment, and load the \scsty{SuperCollider-IDE}
+% it in an |lstlisting| environment, and load the \scsty{}
 % style in the environment's optional argument,
 % using \lstpkg{}' \keyname{style} key.
 %^^A
@@ -315,7 +315,7 @@ p.clear;
 % is preferable, for maintainability reasons.
 % To typeset a \SC{} listing residing in an |sc| (or |scx|, or |sco|) file,
 % simply invoke the
-% |\lstinputlisting| macro, load the \scsty{SuperCollider-IDE} style
+% |\lstinputlisting| macro, load the \scsty{} style
 % in the environment's optional argument,
 % and specify the path to the file in question in the mandatory argument.
 %^^A
@@ -363,7 +363,7 @@ p.clear;
 % to help you distinguish them from native \lstpkg{} keys.
 %
 % For each of the three keys described below,
-% the value assigned to it in the \scsty{SuperCollider-IDE} style is indicated
+% the value assigned to it in the \scsty{} style is indicated
 % on the right-hand side.
 %^^A
 % \begin{syntax}
@@ -397,7 +397,7 @@ p.clear;
 % 
 % The \scpkg{} package uses the Computer Modern typewriter font by default,
 % which, arguably, is far from ideal.
-% I encourage you to switch to your preferred ``programmer font'' instead.
+% I encourage you to switch to your favourite ``programmer font'' instead.
 %
 % For |pdflatex| users,
 % \scpkg{} conveniently provides a macro for easily selecting the Courier
@@ -411,9 +411,9 @@ p.clear;
 %
 % \end{syntax}
 %^^A
-% To use Courier in your \SC{} listings, you must pass |\sctttfamily| to
+% To use Courier in your \SC{} listings, you must pass |\scttfamily| to
 % \lstpkg{}' \keyname{basicstyle} key (\emph{after} loading the
-% \scsty{SuperCollider-IDE} style) and also---this is important---^^A
+% \scsty{} style) and also---this is important---^^A
 % load the \pkg{fontenc} package with option \opt{T1}:
 %^^A
 % \begin{verbatim}
@@ -432,16 +432,15 @@ p.clear;
 %
 % \section{Bug reports and feature suggestions}
 %
-% The development version of \scpkg{} is currently hosted on Bitbucket at
-% \href{http://bitbucket.org/Jubobs/sclang-prettifier/}
+% The development version of \scpkg{} is currently hosted on GitHub at
+% \href{https://github.com/Jubobs/sclang-prettifier/}
 %   {Jubobs/sclang-prettifier}.
 % If you find an issue in \scpkg{} that this manual does not mention,
 % if you would like to see a feature implemented in the package,
 % or if you can think of ways in which the \scpkg{} documentation could be
-% improved, please add an entry to the Bitbucket repository's issue tracker;
+% improved, please add an entry to the repository's issue tracker on GitHub;
 % alternatively, you can send me an email at
-% \href{mailto:jubobs.tex@gmail.com}
-%   {jubobs.tex@gmail.com}
+% \href{mailto:jubobs.tex@gmail.com}{jubobs.tex@gmail.com}
 %
 % \makeatletter
 % \def\index@prologue{\part{Index}\markboth{Index}{Index}}
@@ -512,7 +511,7 @@ p.clear;
 % \paragraph{Framed listings}
 % \begin{macro}{\ifframed@scpr@}
 % This option draws (by default) a frame around each listing that uses 
-% the \scsty{SuperCollider-IDE} style.
+% the \scsty{} style.
 %    \begin{macrocode}
 \newif\ifframed@scpr@
 \DeclareOption{framed}{\framed@scpr@true}
@@ -522,7 +521,7 @@ p.clear;
 % \paragraph{Numbered lines}
 % \begin{macro}{\ifnumbered@scpr@}
 % This option prints (by default) line numbers to the left of each listing
-% that uses the \scsty{SuperCollider-IDE} style.
+% that uses the \scsty{} style.
 %    \begin{macrocode}
 \newif\ifnumbered@scpr@
 \DeclareOption{numbered}{\numbered@scpr@true}
@@ -635,7 +634,7 @@ p.clear;
 % \lstpkg{} already stores the backslash in a macro called |\lstum@backslash|.
 %
 %
-% \section{Hooking into \lstpkg{}' hooks}
+% \section{Using into \lstpkg{}' hooks}
 %
 % We apply some necessary patches in two \lstpkg{}' hooks;
 % but first, we define a couple of helper macros.
