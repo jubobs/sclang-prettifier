@@ -141,7 +141,7 @@
 % \begin{abstract}
 %   Built on top of the \lstpkg{} package, the \scpkg{} package allows you to
 %   effortlessly prettyprint \SC{} source code in documents typeset with
-%   \LaTeX{} \& friends. 
+%   \LaTeX{} \& friends.
 % \end{abstract}
 %
 % \tableofcontents\newpage
@@ -199,27 +199,27 @@ p.clear;
 % \iffalse
 %</example>
 % \fi
-% 
+%
 % The \scpkg{} package automatically
 % highlights the following syntactic elements of the \SC{} language.
 %
 % \paragraph{Keywords}
 % \sccode{var}
-% 
+%
 % \paragraph{To-end-of-line and block comments}
 % \sccode{// 3.43 is nice!}
-% 
+%
 % \paragraph{Symbols}
 % \lstinline[style=SuperCollider-IDE]|\tfreq|,
 % \lstinline[style=SuperCollider-IDE]|'exp'|, etc.
 %
 % \paragraph{Environment variables}
 % \lstinline[style=SuperCollider-IDE]|~grains|
-% 
+%
 % \paragraph{Classes}
 % \lstinline[style=SuperCollider-IDE]|Impulse|,
 % \lstinline[style=SuperCollider-IDE]|TGrains|, etc.
-% 
+%
 %
 % \part{User's guide}
 %
@@ -349,7 +349,7 @@ p.clear;
 %
 %
 % \section{Advanced customization}
-% 
+%
 % \subsection{\scpkg{}'s key-value interface}
 %
 % The \lstpkg{} package provides a large number of options accessible via a
@@ -394,7 +394,7 @@ p.clear;
 %
 % \subsection{Changing the font of your \texorpdfstring{\SC}{SuperCollider}
 %   listings}
-% 
+%
 % The \scpkg{} package uses the Computer Modern typewriter font by default,
 % which, arguably, is far from ideal.
 % I encourage you to switch to your favourite ``programmer font'' instead.
@@ -418,10 +418,10 @@ p.clear;
 %^^A
 % \begin{verbatim}
 %   \usepackage[T1]{fontenc}\end{verbatim}
-% 
+%
 %
 % \part{Miscellaneous}
-% 
+%
 % \section{Missing features and known issues}
 %
 % The \scpkg{} currently does not highlight numbers as the \SC{} IDE does.
@@ -481,8 +481,7 @@ p.clear;
 %   This macro checks whether \lstpkg{} was loaded with a given option
 %   and, if so, throws an error.
 %    \begin{macrocode}
-\newcommand\lstoptcheck@scpr[1]
-{%
+\newcommand\lstoptcheck@scpr[1]{%
   \@ifpackagewith{listings}{#1}%
   {
     \PackageError{sclang-prettifier}%
@@ -510,7 +509,7 @@ p.clear;
 %
 % \paragraph{Framed listings}
 % \begin{macro}{\ifframed@scpr@}
-% This option draws (by default) a frame around each listing that uses 
+% This option draws (by default) a frame around each listing that uses
 % the \scsty{} style.
 %    \begin{macrocode}
 \newif\ifframed@scpr@
@@ -544,8 +543,7 @@ p.clear;
 % We discard any other option passed to \scpkg{} by the user
 % and issue a warning.
 %    \begin{macrocode}
-\DeclareOption*%
-{%
+\DeclareOption*{%
   \OptionNotUsed
   \PackageWarning{sclang-prettifier}{Unknown `\CurrentOption' option}
 }
@@ -557,7 +555,7 @@ p.clear;
 %
 %
 % \section{Required packages}
-% 
+%
 % The \scpkg{} package require three packages without any package option:
 % the \pkg{textcomp} package, in order to use \lstpkg{}' \keyname{upquote}
 % key;
@@ -595,8 +593,7 @@ p.clear;
 % trickery on |\lstdefinelanguage|.
 %    \begin{macrocode}
 \expandafter\expandafter\expandafter\lstdefinelanguage\expandafter
-{\language@scpr}
-{%
+{\language@scpr}{%
   morekeywords  = {var},
   alsoletter    = \\~,
   alsoother     = @,
@@ -629,7 +626,7 @@ p.clear;
 \lst@SaveOutputDef{`$}\dollar@scpr
 %    \end{macrocode}
 % \end{macro}
-% 
+%
 % No need for such definition for the backslash:
 % \lstpkg{} already stores the backslash in a macro called |\lstum@backslash|.
 %
@@ -662,7 +659,7 @@ p.clear;
 %
 % \paragraph{\hookname{Output}}
 % (See the
-% \href{http://www.ctan.org/pkg/listings}{\lstpkg{} documentation} 
+% \href{http://www.ctan.org/pkg/listings}{\lstpkg{} documentation}
 % for more details on this hook.)
 % \begin{macro}{\addedToOutput@scpr}
 % We add this macro (initially empty) to \lstpkg{}'
@@ -682,8 +679,7 @@ p.clear;
 % The |\addedToOutput@scpr}| macro is let to this one under certain
 % conditions (more details follow).
 %    \begin{macrocode}
-\newcommand\@ddedToOutput@scpr
-{%
+\newcommand\@ddedToOutput@scpr{%
 %    \end{macrocode}
 % If we're in \lstpkg{}' processing mode\ldots
 %    \begin{macrocode}
@@ -700,7 +696,7 @@ p.clear;
       \let\lst@thestyle\symbolStyle@scpr%
 %    \end{macrocode}
 % If that token is a dollar sign, we have a SuperCollider ``character''.
-% we apply the style associated to symbols (as in the \SC{} IDE).
+% We apply the style associated to symbols (as in the \SC{} IDE).
 %    \begin{macrocode}
     \else
       \expandafter\ifx\firstchar@scpr\dollar@scpr%
@@ -728,34 +724,33 @@ p.clear;
             \unless\ifnum\currentchar@scpr>90%
           \repeat%
         \fi
-      \fi    
+      \fi
     \fi
   \fi
 %    \end{macrocode}
 % Whatever style was applied, we still check whether the identifier is a
 % keyword; if it is one, the keyword style is applied to it.
 %    \begin{macrocode}
-  \lsthk@DetectKeywords% 
+  \lsthk@DetectKeywords%
 }
 %    \end{macrocode}
 % \end{macro}
 %
 % \paragraph{\hookname{PreInit}}
 % (See the
-% \href{http://www.ctan.org/pkg/listings}{\lstpkg{} documentation} 
+% \href{http://www.ctan.org/pkg/listings}{\lstpkg{} documentation}
 % for more details on this hook.)
 % Because the |\lst@AddToHook| affects hooks globally
 % (i.e.\ for all listings),
-% we must apply our patches only when required, i.e.\ 
-% in listings that use \sclng{}, and not in others.
+% we must apply our patches only when required,
+% i.e.\ in listings that use \sclng{}, and not in others.
 % The \hookname{PreInit}, which is called at the very beginning of each
 % listing, is where we do that.
 % We check
 % whether |\lst@language| and |\languageNormedDefd@scpr| expand (once) to the
 % same replacement text and only apply our patches under that condition.
 %    \begin{macrocode}
-\lst@AddToHook{PreInit}
-{%
+\lst@AddToHook{PreInit}{%
   \ifx\lst@language\languageNormedDefd@scpr%
     \let\addedToOutput@scpr\@ddedToOutput@scpr%
   \fi
@@ -793,7 +788,7 @@ p.clear;
 %    \end{macrocode}
 % \end{macro}
 % \end{lstkey}
-% 
+%
 % \paragraph{Class style}
 % \begin{lstkey}{scclassstyle}
 % \begin{macro}{\classStyle@scpr}
@@ -821,7 +816,7 @@ p.clear;
 %
 %
 % \section{\texorpdfstring{\scsty{}}{SuperCollider-IDE} style}
-% 
+%
 % The \scsty{} style mimics the default style of the \SC{} IDE.
 %
 % \begin{macro}{\toks@scpr}

@@ -31,8 +31,7 @@
 \ProvidesPackage{sclang-prettifier}
   [2014/06/14 v0.1 A package for prettyprinting SuperCollider
    source code]
-\newcommand\lstoptcheck@scpr[1]
-{%
+\newcommand\lstoptcheck@scpr[1]{%
   \@ifpackagewith{listings}{#1}%
   {
     \PackageError{sclang-prettifier}%
@@ -53,8 +52,7 @@
 \DeclareOption{numbered}{\numbered@scpr@true}
 \DeclareOption{draft}{\PassOptionsToPackage{\CurrentOption}{listings}}
 \DeclareOption{final}{\PassOptionsToPackage{\CurrentOption}{listings}}
-\DeclareOption*%
-{%
+\DeclareOption*{%
   \OptionNotUsed
   \PackageWarning{sclang-prettifier}{Unknown `\CurrentOption' option}
 }
@@ -66,8 +64,7 @@
 \expandafter\lst@NormedDef\expandafter\languageNormedDefd@scpr%
   \expandafter{\language@scpr}
 \expandafter\expandafter\expandafter\lstdefinelanguage\expandafter
-{\language@scpr}
-{%
+{\language@scpr}{%
   morekeywords  = {var},
   alsoletter    = \\~,
   alsoother     = @,
@@ -87,8 +84,7 @@
 \newcommand\addedToOutput@scpr{}
 \lst@AddToHook{Output}{\addedToOutput@scpr}
 \newcount\currentchar@scpr
-\newcommand\@ddedToOutput@scpr
-{%
+\newcommand\@ddedToOutput@scpr{%
   \ifnum\lst@mode=\lst@Pmode%
     \expandafter\getfirstchar@scpr\expandafter{\the\lst@token}%
     \expandafter\ifx\firstchar@scpr\lstum@backslash%
@@ -116,8 +112,7 @@
   \fi
   \lsthk@DetectKeywords%
 }
-\lst@AddToHook{PreInit}
-{%
+\lst@AddToHook{PreInit}{%
   \ifx\lst@language\languageNormedDefd@scpr%
     \let\addedToOutput@scpr\@ddedToOutput@scpr%
   \fi
